@@ -1,16 +1,16 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const asyncHandler =require('express-async-handler')
-const nodemailer = require('nodemailer')
-const sendGridTransport = require('nodemailer-sendgrid-transport')
+// const nodemailer = require('nodemailer')
+// const sendGridTransport = require('nodemailer-sendgrid-transport')
 
 const User = require('../model/userModel')
 
-const transporter = nodemailer.createTransport(sendGridTransport({
-    auth: {
-        api_key: process.env.GRID_KEY
-    }
-}))
+// const transporter = nodemailer.createTransport(sendGridTransport({
+//     auth: {
+//         api_key: process.env.GRID_KEY
+//     }
+// }))
 
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body
@@ -48,20 +48,20 @@ const registerUser = asyncHandler(async (req, res) => {
             token: generateToken(user._id)
         })
 
-        var mail = {
-            to: user.email,
-            from: 'waleedsaifullah786@gmail.com',
-            subject: 'SignUp Completed Sucessfully',
-            text: 'Awesome sauce',
-            html: '<h1>You have sucessfully signed up</h1>'
-        };
+        // var mail = {
+        //     to: user.email,
+        //     from: 'waleedsaifullah786@gmail.com',
+        //     subject: 'SignUp Completed Sucessfully',
+        //     text: 'Awesome sauce',
+        //     html: '<h1>You have sucessfully signed up</h1>'
+        // };
     
-        transporter.sendMail(mail, function(err, res) {
-            if (err) { 
-                console.log(err) 
-            }
-            console.log(res);
-        });
+        // transporter.sendMail(mail, function(err, res) {
+        //     if (err) { 
+        //         console.log(err) 
+        //     }
+        //     console.log(res);
+        // });
     } else {
         res.status(400)
         throw new Error('Invalid user data')

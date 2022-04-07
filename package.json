@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
-    "client": "npm start --prefix frontend"
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
   },
   "keywords": [],
   "author": "",
@@ -21,5 +22,8 @@
     "mongoose": "^6.2.9",
     "nodemailer": "^6.7.3",
     "nodemailer-sendgrid-transport": "^0.2.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.1.0"
   }
 }
